@@ -1,5 +1,7 @@
 from django.views.generic import DetailView, ListView
 from .models import Publicacion
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -13,3 +15,21 @@ class VistaDetallePublicacion(DetailView):
     model = Publicacion
     template_name = "publicacion_detalle.html"
     context_object_name = "publicacion"
+
+
+class VistaCrearPublicacion(CreateView):  # nuevo
+    model = Publicacion
+    template_name = "publicacion_nueva.html"
+    fields = ["titulo", "autor", "contenido"]
+
+
+class VistaEditarPublicacion(UpdateView):  # nuevo
+    model = Publicacion
+    template_name = "publicacion_editar.html"
+    fields = ["titulo", "contenido"]
+
+
+class VistaEliminarPublicacion(DeleteView):  # nuevo
+    model = Publicacion
+    template_name = "publicacion_eliminar.html"
+    success_url = reverse_lazy("inicio")

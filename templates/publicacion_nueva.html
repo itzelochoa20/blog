@@ -1,0 +1,34 @@
+<!-- templates/publicacion_nueva.html -->
+{% extends "base.html" %}
+
+{% block titulo %}Nueva publicación{% endblock titulo %}
+
+{% block contenido %}
+  <h1>Nueva publicación</h1>
+  <form action="" method="post" class="formulario">
+    {% csrf_token %}
+
+    <div>
+      {{ form.titulo.label_tag }}
+      {{ form.titulo }}
+      {% if form.titulo.help_text %}
+        <small>{{ form.titulo.help_text }}</small>
+      {% endif %}
+      {{ form.titulo.errors }}
+    </div>
+
+    <div>
+      {{ form.autor.label_tag }}
+      {{ form.autor }}
+      {{ form.autor.errors }}
+    </div>
+
+    <div>
+      {{ form.contenido.label_tag }}
+      {{ form.contenido }}
+      {{ form.contenido.errors }}
+    </div>
+
+    <button type="submit" class="boton">Guardar</button>
+  </form>
+{% endblock contenido %}
